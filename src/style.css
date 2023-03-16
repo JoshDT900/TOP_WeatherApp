@@ -21,13 +21,13 @@
 * {
   padding: 0px;
   margin: 0px;
-  font-family: JosefinSans_Reg, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: JosefinSans_Reg, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
   height: 100vh;
 
-  background-color: #FEFFDE;
+  background-color: #feffde;
 }
 
 .nav_wrap {
@@ -38,15 +38,15 @@ body {
 
   height: 100px;
 
-  background-color: #91C788;
+  background-color: #91c788;
   color: Black;
 
-  border-bottom: 2px solid #52734D;
-  box-shadow: 0px 5px 5px #52734D;
+  border-bottom: 2px solid #52734d;
+  box-shadow: 0px 5px 5px #52734d;
 }
 
 .project_name {
-  font-family: JosefinSans_Bold, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: JosefinSans_Bold, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .external_links {
@@ -60,7 +60,8 @@ body {
 }
 
 .created_by {
-  font-family: JosefinSans_Light, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: JosefinSans_Light, "Segoe UI", Tahoma, Geneva, Verdana,
+    sans-serif;
 }
 
 .external_links a {
@@ -88,22 +89,22 @@ form {
 
 form button {
   padding: 10px;
-  border: 2px solid #52734D;
+  border: 2px solid #52734d;
   border-radius: 2px;
-  background-color: #91C788;
-  font-family: JosefinSans_Semi, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #91c788;
+  font-family: JosefinSans_Semi, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 16px;
 }
 
 form button:hover {
   background-color: #354932;
-  color: #91C788;
+  color: #91c788;
   border: 2px solid #354932;
 }
 
 form input {
   padding: 8px;
-  outline: 3px solid #52734D;
+  outline: 3px solid #52734d;
   width: 100px;
   border: none;
   border-radius: 10px;
@@ -141,7 +142,7 @@ form input {
 
 .weather_img_box > p {
   font-size: 30px;
-  font-family: JosefinSans_Bold, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: JosefinSans_Bold, "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .weather_info {

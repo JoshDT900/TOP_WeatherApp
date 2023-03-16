@@ -1,10 +1,9 @@
-import gitImgLogo from "../src/imgs/GitHub-Mark-120px-plus.png"
-
+import gitImgLogo from "../src/imgs/GitHub-Mark-120px-plus.png";
 
 const assetMod = (function () {
   const gitImg = gitImgLogo;
 
-  return { gitImg }
+  return { gitImg };
 })();
 
 export default assetMod;
