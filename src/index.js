@@ -1,7 +1,7 @@
 import css from "../src/style.css";
 import assetMod from "./assets";
 import { domEleGen } from "dom_gen_cosbert";
-import weatherData from "../src/data"
+import weatherData from "../src/data";
 
 function navBarGen(body) {
   const bodyEle = body;
@@ -44,20 +44,37 @@ function formGen(body) {
   const formEle = domEleGen.makeEle("form", "", ["action", ""]);
   mainEle.appendChild(formEle);
 
-  const zipLabel = domEleGen.makeEle("label", "Enter a ZIPCODE. (USA Only)", [
-    "for",
-    "zipcode",
-  ]);
-  formEle.appendChild(zipLabel);
+  const divBoxOne = domEleGen.makeEle("div", "", ["class", "zip_box"]);
+  formEle.appendChild(divBoxOne);
+
+  const divBoxTwo = domEleGen.makeEle("div", "", ["class", "city_box"]);
+  formEle.appendChild(divBoxTwo);
+
+  const zipLabel = domEleGen.makeEle("label", "Zipcode", ["for", "zipcode"]);
+  divBoxOne.appendChild(zipLabel);
 
   const zipInputArr = [
     ["type", "text"],
     ["name", "zipcode"],
     ["id", "zipcode"],
     ["pattern", "[0-9]{5}"],
+    ["required", ""],
   ];
   const zipInput = domEleGen.makeEle("input", "", zipInputArr);
-  formEle.appendChild(zipInput);
+  divBoxOne.appendChild(zipInput);
+
+  const cityLabel = domEleGen.makeEle("label", "City Name", ["for", "city"]);
+  divBoxTwo.appendChild(cityLabel);
+
+  const cityInpArr = [
+    ["type", "text"],
+    ["name", "zipcode"],
+    ["id", "zipcode"],
+    ["pattern", "^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]"],
+    ["required", ""],
+  ];
+  const cityInput = domEleGen.makeEle("input", "", cityInpArr);
+  divBoxTwo.appendChild(cityInput);
 
   const formSubBtn = domEleGen.makeEle("button", "Submit", ["type", "submit"]);
   formEle.addEventListener("submit", (e) => {
