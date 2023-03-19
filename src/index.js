@@ -1,7 +1,7 @@
 import css from "../src/style.css";
 import assetMod from "./assets";
 import { domEleGen } from "dom_gen_cosbert";
-import { validateZip, validateCity } from "./funcs";
+import { validateZip } from "./funcs";
 import weatherData from "../src/data";
 
 function navBarGen(body) {

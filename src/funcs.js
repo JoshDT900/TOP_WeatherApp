@@ -13,19 +13,6 @@ function validateZip(formInput) {
   }
 }
 
-function validateCity(formInput) {
-  const cityEle = document.querySelector("#city");
-  const cityError = document.querySelector(".error_box_two");
 
-  if (
-    formInput.target.validity.patternMismatch &&
-    formInput.target.id == "city"
-  ) {
-    cityEle.setCustomValidity("Please enter a valid US City Name.");
-    cityError.innerHTML = "Please enter a valid US City Name.";
-  } else {
-    cityError.innerHTML = "";
-  }
-}
 
-export { validateZip, validateCity };
+export { validateZip };
