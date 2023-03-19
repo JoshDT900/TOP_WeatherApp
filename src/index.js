@@ -51,9 +51,6 @@ function formGen(body) {
   const divBoxOne = domEleGen.makeEle("div", "", ["class", "zip_box"]);
   formEle.appendChild(divBoxOne);
 
-  // const divBoxTwo = domEleGen.makeEle("div", "", ["class", "city_box"]);
-  // formEle.appendChild(divBoxTwo);
-
   const zipLabel = domEleGen.makeEle("label", "Zipcode", ["for", "zipcode"]);
   divBoxOne.appendChild(zipLabel);
 
@@ -73,28 +70,6 @@ function formGen(body) {
   divBoxOne.appendChild(zipInput);
   divBoxOne.appendChild(spanBoxOne);
 
-  // const cityLabel = domEleGen.makeEle("label", "City Name", ["for", "city"]);
-  // divBoxTwo.appendChild(cityLabel);
-
-  // const cityInpArr = [
-  //   ["type", "text"],
-  //   ["name", "city"],
-  //   ["id", "city"],
-  //   [
-  //     "pattern",
-  //     "^([a-zA-Z\u0080-\u024F]+(?:. |-| |'))*[a-zA-Z\u0080-\u024F]*$",
-  //   ],
-  //   ["maxlength", "20"],
-  //   ["required", ""],
-  // ];
-  // const cityInput = domEleGen.makeEle("input", "", cityInpArr);
-  // const spanBoxTwo = domEleGen.makeEle("span", "", [
-  //   "class",
-  //   "error_box_two error",
-  // ]);
-  // divBoxTwo.appendChild(cityInput);
-  // divBoxTwo.appendChild(spanBoxTwo);
-
   const formSubBtn = domEleGen.makeEle("button", "Submit", ["type", "submit"]);
   formEle.appendChild(formSubBtn);
 
@@ -108,10 +83,6 @@ function formGen(body) {
   zipInput.addEventListener("input", (e) => {
     validateZip(e);
   });
-
-  // cityInput.addEventListener("input", (e) => {
-  //   validateCity(e);
-  // });
 }
 
 function mainGen(body) {
@@ -132,5 +103,5 @@ function pageRender() {
 
 (() => {
   pageRender();
-  weatherData();
+  weatherData("28601");
 })();

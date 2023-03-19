@@ -6,7 +6,6 @@ function validateZip(formInput) {
     formInput.target.validity.patternMismatch &&
     formInput.target.id == "zipcode"
   ) {
-    zipEle.setCustomValidity("");
     zipError.innerHTML = "Please enter a valid US Zipcode.";
   } else {
     zipError.innerHTML = "";
