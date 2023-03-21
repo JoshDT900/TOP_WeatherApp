@@ -1,11 +1,12 @@
 function validateZip(formInput) {
-  const zipInput = document.querySelector("#zipcode")
+  const zipInput = document.querySelector("#zipcode");
   const zipError = document.querySelector(".error_box_one");
 
   if (formInput.target.validity.patternMismatch) {
     zipInput.setCustomValidity("Please enter a valid US Zipcode.");
     zipError.innerHTML = "Please enter a valid US Zipcode.";
   } else {
+    zipInput.setCustomValidity("");
     zipError.innerHTML = "";
   }
 }
