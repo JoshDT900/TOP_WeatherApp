@@ -1,19 +1,19 @@
 import APIKEY from "../key/key.json";
 
-async function weatherData(zip) {
-  let zipCode = zip;
-
-  if (zipCode == undefined) {
-    zipCode = "28613";
-  }
+async function weatherData(data, func, errHandle) {
+  const formData = data;
+  const renderFunc = func;
+  let zipCode = formData.get("zipcode");
 
   const response = await fetch(
     `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&units=imperial&appid=${APIKEY.key}`,
     { mode: "cors" }
   );
-  const weatherData = await response.json();
+  const weatherInfo = await response.json();
 
-  console.log(weatherData);
+  renderFunc(weatherInfo);
+
+  // console.log(weatherData);
 }
 
 export default weatherData;

@@ -1,7 +1,7 @@
 import css from "../src/style.css";
 import assetMod from "./assets";
 import { domEleGen } from "dom_gen_cosbert";
-import { validateZip } from "./funcs";
+import { validateZip, pageContent, errorHandle } from "./funcs";
 import weatherData from "../src/data";
 
 function navBarGen(body) {
@@ -77,12 +77,22 @@ function formGen(body) {
     e.preventDefault();
 
     const formData = new FormData(formEle);
-    console.log(formData);
+    weatherData(formData, pageContent)
+      .catch(error => { errorHandle(error) });
   });
 
   zipInput.addEventListener("input", (e) => {
     validateZip(e);
   });
+}
+
+function weatherBox() {
+  const mainEle = document.querySelector(".main_wrap");
+
+  const locationBox = domEleGen.makeEle("div", "", ["class", "loc_box"]);
+  const locText = domEleGen.makeEle("h2", ``);
+  mainEle.appendChild(locationBox);
+  locationBox.appendChild(locText);
 }
 
 function mainGen(body) {
@@ -92,6 +102,7 @@ function mainGen(body) {
   bodyEle.appendChild(mainEleWrap);
 
   formGen(mainEleWrap);
+  weatherBox();
 }
 
 function pageRender() {
@@ -103,5 +114,4 @@ function pageRender() {
 
 (() => {
   pageRender();
-  weatherData("28601");
 })();
