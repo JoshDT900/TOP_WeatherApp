@@ -1,6 +1,6 @@
 import APIKEY from "../key/key.json";
 
-async function weatherData(data, func, errHandle) {
+async function weatherData(data, func) {
   const formData = data;
   const renderFunc = func;
   let zipCode = formData.get("zipcode");

@@ -44,7 +44,7 @@ function formGen(body) {
 
   const formEle = domEleGen.makeEle("form", "", [
     ["action", ""],
-    ["novalidate", ""],
+    // ["novalidate", ""],
   ]);
   mainEle.appendChild(formEle);
 
@@ -77,8 +77,9 @@ function formGen(body) {
     e.preventDefault();
 
     const formData = new FormData(formEle);
-    weatherData(formData, pageContent)
-      .catch(error => { errorHandle(error) });
+    weatherData(formData, pageContent).catch((error) => {
+      errorHandle(error);
+    });
   });
 
   zipInput.addEventListener("input", (e) => {
@@ -107,9 +108,13 @@ function mainGen(body) {
 
 function pageRender() {
   const bodyEle = document.querySelector("body");
+  const defaultZip = new Map();
+  defaultZip.set("zipcode", "28601");
 
   navBarGen(bodyEle);
   mainGen(bodyEle);
+
+  weatherData(defaultZip, pageContent);
 }
 
 (() => {
