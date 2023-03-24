@@ -2,7 +2,7 @@ import css from "../src/style.css";
 import assetMod from "./assets";
 import { domEleGen } from "dom_gen_cosbert";
 import { validateZip, pageContent, errorHandle } from "./funcs";
-import weatherData from "../src/data";
+import { weatherData, ImageData } from "../src/data";
 
 function navBarGen(body) {
   const bodyEle = body;
@@ -111,7 +111,7 @@ function pageRender() {
   navBarGen(bodyEle);
   mainGen(bodyEle);
 
-  weatherData(defaultZip, pageContent);
+  // weatherData(defaultZip, pageContent);
 }
 
 (() => {
