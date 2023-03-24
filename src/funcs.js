@@ -14,7 +14,6 @@ function validateZip(formInput) {
 function pageContent(data) {
   const apiData = { ...data };
   const locBox = document.querySelector(".loc_box h2");
-  console.log(apiData);
 
   if (apiData.cod == "200") {
     locBox.innerHTML = `${apiData.name}`;

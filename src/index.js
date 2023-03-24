@@ -42,10 +42,7 @@ function navBarGen(body) {
 function formGen(body) {
   const mainEle = body;
 
-  const formEle = domEleGen.makeEle("form", "", [
-    ["action", ""],
-    // ["novalidate", ""],
-  ]);
+  const formEle = domEleGen.makeEle("form", "", [["action", ""]]);
   mainEle.appendChild(formEle);
 
   const divBoxOne = domEleGen.makeEle("div", "", ["class", "zip_box"]);

@@ -12,8 +12,6 @@ async function weatherData(data, func) {
   const weatherInfo = await response.json();
 
   renderFunc(weatherInfo);
-
-  // console.log(weatherData);
 }
 
 export default weatherData;
