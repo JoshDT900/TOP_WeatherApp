@@ -1,3 +1,5 @@
+import { imageData } from "./data";
+
 function validateZip(formInput) {
   const zipInput = document.querySelector("#zipcode");
   const zipError = document.querySelector(".error_box_one");
@@ -13,6 +15,13 @@ function validateZip(formInput) {
 
 function pageContent(data) {
   const apiData = { ...data };
+  
+
+  drawLocBox(apiData);  
+}
+
+function drawLocBox(data) {
+  const apiData = { ...data };
   const locBox = document.querySelector(".loc_box h2");
 
   if (apiData.cod == "200") {
@@ -20,6 +29,11 @@ function pageContent(data) {
   } else {
     locBox.innerHTML = `Error ${apiData.cod}: ${apiData.message}`;
   }
+}
+
+function drawImage(data) {
+  const apiData = { ...data };
+
 }
 
 function errorHandle() {

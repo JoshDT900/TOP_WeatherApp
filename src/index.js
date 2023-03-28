@@ -2,7 +2,7 @@ import css from "../src/style.css";
 import assetMod from "./assets";
 import { domEleGen } from "dom_gen_cosbert";
 import { validateZip, pageContent, errorHandle } from "./funcs";
-import { weatherData, ImageData } from "../src/data";
+import { weatherData, imageData } from "../src/data";
 
 function navBarGen(body) {
   const bodyEle = body;
@@ -84,13 +84,44 @@ function formGen(body) {
   });
 }
 
-function weatherBox() {
-  const mainEle = document.querySelector(".main_wrap");
+function weatherBox(ele) {
+  const mainEle = ele;
 
   const locationBox = domEleGen.makeEle("div", "", ["class", "loc_box"]);
   const locText = domEleGen.makeEle("h2", ``);
   mainEle.appendChild(locationBox);
   locationBox.appendChild(locText);
+}
+
+function weatherImgBox(ele, data) {
+  const mainEle = ele;
+  const imgData = data;
+
+  const wthImgBox = domEleGen.makeEle("div", "", ["class", "weather_img_box"]);
+  mainEle.appendChild(wthImgBox);
+
+  const weatherImage = domEleGen.makeEle("img", "", [
+    ["src", "placeholder"],
+    ["alt", "placeholder text"],
+    ["class", "weather_image"]
+  ])
+  wthImgBox.appendChild(weatherImage)
+
+  const weatherImgTxt = domEleGen.makeEle("p", "Placeholder Text")
+  wthImgBox.appendChild(weatherImgTxt);
+}
+
+
+function weatherBody(ele) {
+  const mainEle = ele;
+
+  const todayWeathEle = domEleGen.makeEle("div", "", ["class", "todays_weather"])
+  mainEle.appendChild(todayWeathEle);
+
+  weatherImgBox(todayWeathEle);
+
+  // const picURL = data;
+  // console.log(picURL);
 }
 
 function mainGen(body) {
@@ -100,7 +131,8 @@ function mainGen(body) {
   bodyEle.appendChild(mainEleWrap);
 
   formGen(mainEleWrap);
-  weatherBox();
+  weatherBox(mainEleWrap);
+  weatherBody(mainEleWrap);
 }
 
 function pageRender() {
@@ -108,10 +140,10 @@ function pageRender() {
   const defaultZip = new Map();
   defaultZip.set("zipcode", "28601");
 
+  weatherData(defaultZip, pageContent);
+
   navBarGen(bodyEle);
   mainGen(bodyEle);
-
-  // weatherData(defaultZip, pageContent);
 }
 
 (() => {
