@@ -48,7 +48,15 @@ function drawImage(data) {
 
 function errorHandle() {
   const locBox = document.querySelector(".loc_box h2");
-  locBox.innerHTML = `Failed to fetch data.`;
+  locBox.innerHTML = `Failed to fetch data - Invalid ZIP.`;
 }
 
-export { validateZip, pageContent, errorHandle, drawImage };
+function currDate() {
+  const todaysDate = new Date();
+
+  const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+
+  return todaysDate.toLocaleDateString('en-us', options);
+}
+
+export { validateZip, pageContent, errorHandle, drawImage, currDate };

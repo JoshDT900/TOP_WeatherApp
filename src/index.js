@@ -1,7 +1,13 @@
 import css from "../src/style.css";
 import assetMod from "./assets";
 import { domEleGen } from "dom_gen_cosbert";
-import { validateZip, pageContent, errorHandle, drawImage } from "./funcs";
+import {
+  validateZip,
+  pageContent,
+  errorHandle,
+  drawImage,
+  currDate,
+} from "./funcs";
 import { weatherData, imageData } from "../src/data";
 
 function navBarGen(body) {
@@ -97,7 +103,6 @@ function weatherBox(ele) {
 
 function weatherImgBox(ele, data) {
   const mainEle = ele;
-  const imgData = data;
 
   const wthImgBox = domEleGen.makeEle("div", "", ["class", "weather_img_box"]);
   mainEle.appendChild(wthImgBox);
@@ -113,6 +118,19 @@ function weatherImgBox(ele, data) {
   wthImgBox.appendChild(weatherImgTxt);
 }
 
+function weatherInfoBox(ele) {
+  const mainEle = ele;
+
+  const weathInfoWrap = domEleGen.makeEle("div", "", ["class", "weather_info"]);
+  mainEle.appendChild(weathInfoWrap);
+
+  const todaysDate = currDate();
+  const dateBox = domEleGen.makeEle("div", "", ["class", "todays_date"]);
+  const dateText = domEleGen.makeEle("p", todaysDate, ["class", "date_text"]);
+  dateBox.appendChild(dateText);
+  weathInfoWrap.appendChild(dateBox);
+}
+
 function weatherBody(ele) {
   const mainEle = ele;
 
@@ -123,9 +141,7 @@ function weatherBody(ele) {
   mainEle.appendChild(todayWeathEle);
 
   weatherImgBox(todayWeathEle);
-
-  // const picURL = data;
-  // console.log(picURL);
+  weatherInfoBox(todayWeathEle);
 }
 
 function mainGen(body) {
