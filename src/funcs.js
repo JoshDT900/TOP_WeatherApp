@@ -15,9 +15,8 @@ function validateZip(formInput) {
 
 function pageContent(data) {
   const apiData = { ...data };
-  
 
-  drawLocBox(apiData);  
+  drawLocBox(apiData);
 }
 
 function drawLocBox(data) {
@@ -26,14 +25,25 @@ function drawLocBox(data) {
 
   if (apiData.cod == "200") {
     locBox.innerHTML = `${apiData.name}`;
+    drawWeathCondition(apiData);
   } else {
     locBox.innerHTML = `Error ${apiData.cod}: ${apiData.message}`;
   }
 }
 
+function drawWeathCondition(data) {
+  const currWeather = data.weather[0].main;
+  const curWeathDisplay = document.querySelector(".weather_img_box > p");
+
+  curWeathDisplay.innerHTML = currWeather;
+}
+
 function drawImage(data) {
   const apiData = { ...data };
+  console.log(apiData);
+  const imgBox = document.querySelector(".weather_image");
 
+  imgBox.src = apiData.data.images.original.url;
 }
 
 function errorHandle() {
@@ -41,4 +51,4 @@ function errorHandle() {
   locBox.innerHTML = `Failed to fetch data.`;
 }
 
-export { validateZip, pageContent, errorHandle };
+export { validateZip, pageContent, errorHandle, drawImage };

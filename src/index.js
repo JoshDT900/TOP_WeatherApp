@@ -1,7 +1,7 @@
 import css from "../src/style.css";
 import assetMod from "./assets";
 import { domEleGen } from "dom_gen_cosbert";
-import { validateZip, pageContent, errorHandle } from "./funcs";
+import { validateZip, pageContent, errorHandle, drawImage } from "./funcs";
 import { weatherData, imageData } from "../src/data";
 
 function navBarGen(body) {
@@ -74,9 +74,11 @@ function formGen(body) {
     e.preventDefault();
 
     const formData = new FormData(formEle);
-    weatherData(formData, pageContent).catch((error) => {
-      errorHandle(error);
-    });
+    weatherData(formData, pageContent)
+      .then((data) => imageData(data, drawImage))
+      .catch((error) => {
+        errorHandle(error);
+      });
   });
 
   zipInput.addEventListener("input", (e) => {
@@ -101,21 +103,23 @@ function weatherImgBox(ele, data) {
   mainEle.appendChild(wthImgBox);
 
   const weatherImage = domEleGen.makeEle("img", "", [
-    ["src", "placeholder"],
-    ["alt", "placeholder text"],
-    ["class", "weather_image"]
-  ])
-  wthImgBox.appendChild(weatherImage)
+    ["src", ""],
+    ["alt", ""],
+    ["class", "weather_image"],
+  ]);
+  wthImgBox.appendChild(weatherImage);
 
-  const weatherImgTxt = domEleGen.makeEle("p", "Placeholder Text")
+  const weatherImgTxt = domEleGen.makeEle("p", "");
   wthImgBox.appendChild(weatherImgTxt);
 }
-
 
 function weatherBody(ele) {
   const mainEle = ele;
 
-  const todayWeathEle = domEleGen.makeEle("div", "", ["class", "todays_weather"])
+  const todayWeathEle = domEleGen.makeEle("div", "", [
+    "class",
+    "todays_weather",
+  ]);
   mainEle.appendChild(todayWeathEle);
 
   weatherImgBox(todayWeathEle);
@@ -140,7 +144,9 @@ function pageRender() {
   const defaultZip = new Map();
   defaultZip.set("zipcode", "28601");
 
-  weatherData(defaultZip, pageContent);
+  weatherData(defaultZip, pageContent).then((data) =>
+    imageData(data, drawImage)
+  );
 
   navBarGen(bodyEle);
   mainGen(bodyEle);

@@ -16,8 +16,9 @@ async function weatherData(data, func) {
   return weatherInfo;
 }
 
-async function imageData(weather) {
-  const currWeather = weather;
+async function imageData(data, func) {
+  const currWeather = `${data.weather[0].main}_weather`;
+  const renderFunc = func;
 
   const response = await fetch(
     `https://api.giphy.com/v1/gifs/translate?api_key=${APIKEY.image_key}&s=${currWeather}`,
@@ -25,11 +26,7 @@ async function imageData(weather) {
   );
   const imageData = await response.json();
 
-  console.log(imageData.data.images.original.url);
-
-  return imageData.data.images.original.url;
+  renderFunc(imageData);
 }
-
-// imageData("sunny");
 
 export { weatherData, imageData };
