@@ -133,7 +133,23 @@ function weatherInfoBox(ele) {
   const tempWrap = domEleGen.makeEle("div", "", ["class", "temperature_wrap"]);
   const tempText = domEleGen.makeEle("p", "", ["class", "curr_temp"]);
   tempWrap.appendChild(tempText);
-  mainEle.appendChild(tempWrap);
+  weathInfoWrap.appendChild(tempWrap);
+
+  const highLowTempWrap = domEleGen.makeEle("div", "", [
+    "class",
+    "high_low_temp_wrap",
+  ]);
+  const highTempText = domEleGen.makeEle("p", "", [
+    "class",
+    "high_temp_text",
+  ]);
+  const lowTempText = domEleGen.makeEle("p", "", [
+    "class",
+    "low_temp_text"
+  ])
+  highLowTempWrap.appendChild(highTempText);
+  highLowTempWrap.appendChild(lowTempText);
+  weathInfoWrap.appendChild(highLowTempWrap);
 }
 
 function weatherBody(ele) {

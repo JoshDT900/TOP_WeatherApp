@@ -13,6 +13,7 @@ async function weatherData(data, func) {
 
   renderFunc(weatherInfo);
 
+  console.log(weatherInfo);
   return weatherInfo;
 }
 

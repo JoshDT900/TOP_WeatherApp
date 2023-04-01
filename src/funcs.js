@@ -1,5 +1,3 @@
-import { domEleGen } from "dom_gen_cosbert";
-
 function validateZip(formInput) {
   const zipInput = document.querySelector("#zipcode");
   const zipError = document.querySelector(".error_box_one");
@@ -18,6 +16,8 @@ function pageContent(data) {
 
   drawLocBox(apiData);
   drawWeathCondition(apiData);
+  drawCurrTemp(apiData);
+  drawChanceWeath(apiData);
 }
 
 function drawLocBox(data) {
@@ -37,14 +37,12 @@ function drawLocBox(data) {
 function drawWeathCondition(data) {
   const currWeather = data.weather[0].main;
   const curWeathDisplay = document.querySelector(".weather_img_box > p");
-  console.log(data);
 
   curWeathDisplay.innerHTML = currWeather;
 }
 
 function drawImage(data) {
   const apiData = { ...data };
-  console.log(apiData);
   const imgBox = document.querySelector(".weather_image");
 
   imgBox.src = apiData.data.images.original.url;
@@ -68,8 +66,22 @@ function currDate() {
   return todaysDate.toLocaleDateString("en-us", options);
 }
 
-function drawCurrTemp() {
+function drawCurrTemp(data) {
+  const apiData = { ...data };
   const currTempEle = document.querySelector(".curr_temp");
+
+  currTempEle.innerHTML = `The Current Temperature: ${Math.round(
+    apiData.main.temp
+  )}° F`;
+}
+
+function drawChanceWeath(data) {
+  const apiData = { ...data };
+  const highTempTxtEle = document.querySelector(".high_temp_text");
+  const lowTempTxtEle = document.querySelector(".low_temp_text");
+
+  highTempTxtEle.innerHTML = `Highs: ${Math.round(apiData.main.temp_max)}° F`;
+  lowTempTxtEle.innerHTML = `Lows: ${Math.round(apiData.main.temp_min)}° F `;
 }
 
 export { validateZip, pageContent, errorHandle, drawImage, currDate };
