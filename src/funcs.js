@@ -1,4 +1,4 @@
-import { imageData } from "./data";
+import { domEleGen } from "dom_gen_cosbert";
 
 function validateZip(formInput) {
   const zipInput = document.querySelector("#zipcode");
@@ -17,23 +17,27 @@ function pageContent(data) {
   const apiData = { ...data };
 
   drawLocBox(apiData);
+  drawWeathCondition(apiData);
 }
 
 function drawLocBox(data) {
   const apiData = { ...data };
   const locBox = document.querySelector(".loc_box h2");
+  const displayWeather = document.querySelector(".todays_weather");
 
   if (apiData.cod == "200") {
     locBox.innerHTML = `${apiData.name}`;
-    drawWeathCondition(apiData);
+    displayWeather.style = "opacity: 100";
   } else {
     locBox.innerHTML = `Error ${apiData.cod}: ${apiData.message}`;
+    displayWeather.style = "opacity: 0";
   }
 }
 
 function drawWeathCondition(data) {
   const currWeather = data.weather[0].main;
   const curWeathDisplay = document.querySelector(".weather_img_box > p");
+  console.log(data);
 
   curWeathDisplay.innerHTML = currWeather;
 }
@@ -54,9 +58,18 @@ function errorHandle() {
 function currDate() {
   const todaysDate = new Date();
 
-  const options = { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' };
+  const options = {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  };
 
-  return todaysDate.toLocaleDateString('en-us', options);
+  return todaysDate.toLocaleDateString("en-us", options);
+}
+
+function drawCurrTemp() {
+  const currTempEle = document.querySelector(".curr_temp");
 }
 
 export { validateZip, pageContent, errorHandle, drawImage, currDate };

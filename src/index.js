@@ -129,6 +129,11 @@ function weatherInfoBox(ele) {
   const dateText = domEleGen.makeEle("p", todaysDate, ["class", "date_text"]);
   dateBox.appendChild(dateText);
   weathInfoWrap.appendChild(dateBox);
+
+  const tempWrap = domEleGen.makeEle("div", "", ["class", "temperature_wrap"]);
+  const tempText = domEleGen.makeEle("p", "", ["class", "curr_temp"]);
+  tempWrap.appendChild(tempText);
+  mainEle.appendChild(tempWrap);
 }
 
 function weatherBody(ele) {
